@@ -28,6 +28,7 @@ async function run() {
     const db = client.db("protfolio");
     const collection = db.collection("users");
     const skillcollection = db.collection("skill");
+    const blogcollection = db.collection("blog");
 
     // User Registration
     app.post("/api/v1/register", async (req, res) => {
@@ -88,6 +89,18 @@ async function run() {
 
       // Insert donation data into the database
       await skillcollection.insertOne(skill);
+
+      res.status(201).json({
+        success: true,
+        message: "skill posted successfully",
+      });
+    });
+    // ========================== add blog ====================================
+    app.post("/api/addblog", async (req, res) => {
+      const blog = req.body;
+
+      // Insert donation data into the database
+      await blogcollection.insertOne(blog);
 
       res.status(201).json({
         success: true,
