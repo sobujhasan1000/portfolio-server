@@ -22,7 +22,7 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     // Connect to MongoDB
-    client.connect();
+    await client.connect();
     console.log("Connected to MongoDB");
 
     const db = client.db("protfolio");
