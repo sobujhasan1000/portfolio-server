@@ -22,7 +22,7 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     // Connect to MongoDB
-    await client.connect();
+    client.connect();
     console.log("Connected to MongoDB");
 
     const db = client.db("protfolio");
@@ -96,6 +96,22 @@ async function run() {
     });
     // ==============================================================
 
+    // ========================get skill========================
+    app.get("/api/skill", async (req, res) => {
+      try {
+        const getskill = await skillcollection.find({}).toArray();
+
+        res.json({
+          success: true,
+          skill: getskill,
+        });
+      } catch (error) {
+        console.error("Error fetching donations:", error);
+        res
+          .status(500)
+          .json({ success: false, message: "Internal Server Error" });
+      }
+    });
     // Start the server
     app.listen(port, () => {
       console.log(`Server is running on http://localhost:${port}`);
