@@ -132,7 +132,7 @@ async function run() {
 
         res.json({
           success: true,
-          skill: getblog,
+          blog: getblog,
         });
       } catch (error) {
         console.error("Error fetching donations:", error);
