@@ -128,11 +128,11 @@ async function run() {
     // ========================get skill========================
     app.get("/api/blog", async (req, res) => {
       try {
-        const getblog = await blogcollection.find({}).toArray();
+        const blog = await blogcollection.find({}).toArray();
 
         res.json({
           success: true,
-          blog: getblog,
+          blog: blog,
         });
       } catch (error) {
         console.error("Error fetching donations:", error);
