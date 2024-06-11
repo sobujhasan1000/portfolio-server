@@ -95,6 +95,22 @@ async function run() {
         message: "skill posted successfully",
       });
     });
+
+    app.get("/api/skill", async (req, res) => {
+      try {
+        const getskill = await skillcollection.find({}).toArray();
+
+        res.json({
+          success: true,
+          skill: getskill,
+        });
+      } catch (error) {
+        console.error("Error fetching donations:", error);
+        res
+          .status(500)
+          .json({ success: false, message: "Internal Server Error" });
+      }
+    });
     // ========================== add blog ====================================
     app.post("/api/addblog", async (req, res) => {
       const blog = req.body;
@@ -110,13 +126,13 @@ async function run() {
     // ==============================================================
 
     // ========================get skill========================
-    app.get("/api/skill", async (req, res) => {
+    app.get("/api/blog", async (req, res) => {
       try {
-        const getskill = await skillcollection.find({}).toArray();
+        const getblog = await blogcollection.find({}).toArray();
 
         res.json({
           success: true,
-          skill: getskill,
+          skill: getblog,
         });
       } catch (error) {
         console.error("Error fetching donations:", error);
